@@ -1,0 +1,75 @@
+.calendar-container {
+  max-width: 300px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.calendar-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.calendar-cell {
+  flex: 1;
+  position: relative;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.calendar-cell.today {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.calendar-cell.disabled {
+  color: #ccc;
+}
+
+.calendar-cell.selected {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.day-number {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.booked-count {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.selected-date {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: #2ecc71;
+}

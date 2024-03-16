@@ -1,0 +1,124 @@
+.color {
+  color: #000 !important;
+}
+.navbar-brand {
+  font-size: 22px;
+  font-weight: 500;
+}
+.logo-img {
+  width: 5em;
+  height: auto;
+}
+.navbar-toggler {
+  border: none !important;
+  outline: none !important;
+}
+.navbar-toggler:focus {
+  border: none !important;
+  outline: none !important;
+}
+.navbar .navbar-nav .nav-link {
+  color: #000;
+  font-size: 1.1em;
+  position: relative;
+}
+.navbar .navbar-nav .nav-link:hover {
+  color: #2a2185;
+}
+.navbar .navbar-nav .nav-link::after {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #2a2185;
+  color: transparent;
+  width: 0%;
+  content: ".";
+  height: 3px;
+  transition: all 0.5s;
+}
+.navbar .navbar-nav .nav-link:hover::after {
+  width: 75%;
+}
+@media only screen and (min-width: 960px) {
+  .navbar .navbar-nav .nav-link {
+    padding: 1em 0.7em;
+  }
+  .navbar {
+    padding: 0;
+  }
+  .navbar .navbar-brand {
+    padding: 0 0.7em;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .navbar .navbar-nav .nav-link::after {
+    bottom: 1px;
+    right: 100%;
+  }
+}
+.navbar.active {
+  background-color: white !important;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* TO MAKE THE NAVBAR SLIDE FROM LEFT ON SMALL SCREEN */
+@media (max-width: 768px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 20px;
+    width: 75%;
+    height: 100%;
+    background-color: white !important;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-collapse.collapsing {
+    left: -75%;
+    transition: height 0s ease;
+  }
+
+  .navbar-collapse.show {
+    left: 0;
+    transition: left 500ms ease-in-out;
+  }
+
+  .navbar-toggler.collapsed ~ .navbar-collapse {
+    transition: left 500ms ease-in-out;
+  }
+  .sm {
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  .navbar .navbar-nav .nav-link:hover::after {
+    width: 20%;
+  }
+}
+
+.nav-link-text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 34px;
+  color: #2a2185;
+}
+
+.btn1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 13px 24px;
+  gap: 10px;
+  height: 48px;
+  background: #2a2185;
+  border-radius: 4px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}

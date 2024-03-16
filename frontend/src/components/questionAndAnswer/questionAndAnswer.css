@@ -1,0 +1,22 @@
+.question-and-answer .custom-link {
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+  border-radius: 5px;
+  border: 1px solid silver;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.question-and-answer .custom-collapse {
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+}
+
+.question-and-answer .question-div {
+  width: 100%;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 20px;
+}

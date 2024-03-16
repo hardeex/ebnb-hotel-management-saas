@@ -1,0 +1,78 @@
+.offers-component {
+  margin-top: 100px;
+}
+
+.offers-component .offer-card-primary {
+  -webkit-box-shadow: 0px 0px 2px 1px rgba(6, 6, 9, 0.1);
+  box-shadow: 0px 0px 2px 1px rgba(6, 6, 9, 0.1);
+  -moz-box-shadow: 0px 0px 2px 1px rgba(6, 6, 9, 0.1);
+  height: 12rem;
+  border-radius: 10px 0 0 10px;
+}
+
+.offers-component .offer-card-secondary {
+  -webkit-box-shadow: 0px 0px 2px 1px rgba(6, 6, 9, 0.1);
+  box-shadow: 0px 0px 2px 1px rgba(6, 6, 9, 0.1);
+  -moz-box-shadow: 0px 0px 2px 1px rgba(6, 6, 9, 0.1);
+  height: 12rem;
+  border-radius: 0 10px 10px 0;
+}
+
+.offers-component .offer-card-other {
+  -webkit-box-shadow: 11px 4px 12px 1px rgba(66, 68, 90, 0.16);
+  box-shadow: 11px 4px 12px 1px rgba(66, 68, 90, 0.16);
+  -moz-box-shadow: 11px 4px 12px 1px rgba(66, 68, 90, 0.16);
+  border-radius: 10px;
+  height: 12rem;
+}
+
+.offers-component p.vacation {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.offers-component p.properties {
+  font-size: 18px;
+  margin-top: -10px;
+}
+
+.offers-component p.rates {
+  font-size: 18px;
+  margin-top: -15px;
+}
+
+.offers-component p.escape {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.offers-component p.explore {
+  margin-top: -10px;
+  font-size: 18px;
+  color: white;
+  font-weight: 500;
+}
+
+.offers-component p.save {
+  margin-top: -15px;
+  font-size: 18px;
+  color: white;
+  font-weight: 500;
+}
+
+@media (max-width: 576px) {
+  .offers-component .offer-card-other {
+    margin: 1rem 0;
+  }
+
+  .offers-component p.vacation {
+    margin-top: 10px;
+  }
+
+  .offers-component .offer-card-primary,
+  .offers-component .offer-card-secondary {
+    margin-bottom: 1rem;
+  }
+}

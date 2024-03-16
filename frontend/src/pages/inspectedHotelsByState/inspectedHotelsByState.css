@@ -1,0 +1,30 @@
+.category-list {
+  margin-top: 100px;
+}
+
+.category-list .custom-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-list .custom-ul li:last-child {
+  border-bottom: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .category-col {
+    margin-right: 0;
+  }
+
+  .amenities .horizontal-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .amenities .horizontal-list li {
+    flex-basis: calc(33.33% - 10px);
+    margin-bottom: 10px;
+  }
+}

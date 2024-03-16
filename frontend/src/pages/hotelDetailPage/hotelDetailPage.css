@@ -1,0 +1,33 @@
+.hotel-detail-page {
+  margin-top: 100px;
+}
+
+.hotel-detail-page .room-list {
+  border: 1px solid rgb(242, 238, 238);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.hotel-detail-page .room-image {
+  border-radius: 5px;
+  margin-right: 10px;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.hotel-detail-page .horizontal-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.hotel-detail-page .horizontal-list li {
+  flex-basis: calc(20% - 10px);
+  margin: 5px;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 3px;
+}

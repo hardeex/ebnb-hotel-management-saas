@@ -1,0 +1,9 @@
+.hotel-categories .custom-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hotel-categories .custom-ul li:last-child {
+  border-bottom: none;
+}

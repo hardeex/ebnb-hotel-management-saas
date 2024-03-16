@@ -1,0 +1,13 @@
+.room-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: 50px;
+}
+
+.room-form .form-group {
+  position: relative;
+  margin-bottom: 20px;
+  width: 500px;
+}

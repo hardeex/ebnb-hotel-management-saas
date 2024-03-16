@@ -1,0 +1,51 @@
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(249, 249, 250);
+}
+
+.login-form .form-group {
+  position: relative;
+  margin-bottom: 20px;
+  width: 500px;
+}
+
+.login-form .floating-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.login-form .form-control {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-bottom: 1px solid #000;
+  background: transparent;
+  color: #000;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.login-form .form-control:focus {
+  outline: none;
+  border-bottom: 2px solid #007bff;
+}
+
+.login-form .form-control:focus + .floating-label,
+.login-form .form-control:valid + .floating-label {
+  top: -30px;
+  font-size: 14px;
+  color: #007bff;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .login-form .form-group {
+    width: 300px;
+  }
+}
