@@ -28,7 +28,8 @@ export default function PartnerRegisterForm() {
     setError("");
     setLoading(true);
     try {
-      await axios.post(`${config.apiUrl}/register`, formData);
+   const res =   await axios.post(`${config.apiUrl}/register`, formData);
+   
       setSuccessMessage(
         "We sent you an email with a verification link to your email. To confirm your account, follow the link in the email we just sent."
       );

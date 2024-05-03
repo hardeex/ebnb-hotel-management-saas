@@ -68,6 +68,7 @@ const settings = {
   autoplaySpeed: 2000,
   vertical: true,
   verticalSwiping: true,
+  
 
   responsive: [
     {
