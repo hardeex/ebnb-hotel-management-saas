@@ -1,3 +1,4 @@
+
 .hotels .custom-ul {
   list-style: none;
   padding: 0;
@@ -7,3 +8,6 @@
 .hotels .custom-ul li:last-child {
   border-bottom: none;
 }
+
+
+

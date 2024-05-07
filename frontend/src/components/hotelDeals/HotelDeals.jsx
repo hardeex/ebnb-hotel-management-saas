@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./hotelDeals.css";
+ import "./hotelDeals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import config from "../../config.json";
 import axios from "axios";
+ import "slick-carousel/slick/slick.css";
+ import "slick-carousel/slick/slick-theme.css";
 
 const PrevArrow = (props) => {
   const { onClick } = props;
@@ -92,7 +94,7 @@ export default function HotelDeals() {
   };
 
   return (
-    <div className="hotel-categories container-fluid mt-5">
+      <div className="hotel-categories container-fluid mt-5">
       <div style={{ marginLeft: 70 }}>
         <h3>Hotel Deals</h3>
       </div>
@@ -101,7 +103,7 @@ export default function HotelDeals() {
       ) : (
         <Slider {...settings} className="custom-slider">
           {hotels.map((hotel, index) => (
-            <div key={index}>
+            <div key={index} className="hotel-custom">
               <Link
                 style={{ color: "black", textDecoration: "none" }}
                 to={`/discount/hotel/${hotel.state}`}
@@ -138,11 +140,11 @@ export default function HotelDeals() {
                     off Discount
                   </span>
                   <img
-                    style={{ height: "70%" }}
+                    // style={{ height: "70%", width: "100%" }}
                     src={`${config.imageUrl}/${hotel.image}`}
-                    className="card-img-top"
+                    // className="card-img-top"
                     alt=""
-                  />
+                    />
                   <div className="card-body">
                     <h5
                       style={{ fontWeight: "bold", fontSize: 20 }}
@@ -160,5 +162,6 @@ export default function HotelDeals() {
         </Slider>
       )}
     </div>
+   
   );
 }

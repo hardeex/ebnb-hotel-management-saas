@@ -16,13 +16,13 @@ use App\Models\BookingConfirmation;
 use App\Models\CheckInRecord;
 use Carbon\Carbon;
 use App\Http\Controllers\Ebulksms;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
 {
 
     public function createBooking(Request $request)
-{
-    try {
+    {
         DB::beginTransaction();
 
         $validator = Validator::make($request->all(), [
@@ -70,46 +70,56 @@ class BookingController extends Controller
         $room->markAsunavailable($bookingData['checkin_date'], $bookingData['checkout_date']);
         $hotelPhoneNumber = $hotel->contact;
 
-        $confirmationToken = Str::random(40);
-        BookingConfirmation::create([
-            'booking_id' => $booking->id,
-            'hotel_id' => $hotel->id,
-            'confirmation_token' => $confirmationToken,
-            'expires_at' => Carbon::now()->addHour(),
-        ]);
+        try {
+            $confirmationToken = Str::random(40);
+            BookingConfirmation::create([
+                'booking_id' => $booking->id,
+                'hotel_id' => $hotel->id,
+                'confirmation_token' => $confirmationToken,
+                'expires_at' => Carbon::now()->addHour(),
+            ]);
 
-        $confirmationLink = route('confirmation.email', ['token' => $confirmationToken]);
-        $messageText = "You have a booking from {$bookingData['checkin_date']} to {$bookingData['checkout_date']} guest {$bookingData['guest_name']} phone number {$bookingData['guest_phone']} for an amount of {$bookingData['payment_amount']}. Confirm or decline now: {$confirmationLink}. or call us at our main line +2347000555666.";
+            $confirmation = route('confirmation.email', ['token' => $confirmationToken]);
+            $messageText = "You have a booking from {$bookingData['checkin_date']} to {$bookingData['checkout_date']} guest {$bookingData['guest_name']} phone number {$bookingData['guest_phone']} for an amount of {$bookingData['payment_amount']}. Confirm or decline now: {$confirmation}. or call us at our main line +2347000555666.";
 
-        Mail::to($bookingData['guest_email'])->send(new BookingConfirmationMail($booking, $hotel));
-        Mail::to($hotel->email)->send(new BookingNotificationToHotel($booking, $confirmationLink));
+            Mail::to($bookingData['guest_email'])->send(new BookingConfirmationMail($booking, $hotel));
+            Mail::to($hotel->email)->send(new BookingNotificationToHotel($booking, $confirmation));
 
-        // Send SMS notification to the hotel
-        $smsController = new Ebulksms();
-        $json_url = "https://api.ebulksms.com:8080/sendsms.json";
-        $username = 'ayussuccess@gmail.com';
-        $apikey = 'c1891f9702ef124dc4469531489692ae2184b50c';
-        $flash = 0;
-        $sendername = 'EBNB';
 
-        $messageText = "You have a booking from {$bookingData['checkin_date']} to {$bookingData['checkout_date']} guest {$bookingData['guest_name']} phone number {$bookingData['guest_phone']} for an amount of {$bookingData['payment_amount']}. Confirm or decline now: {$confirmationLink}. or call us at our main line +2347000555666.";
+            // Send SMS notification to the hotel
+            $smsController = new Ebulksms();
+            $json_url = "https://api.ebulksms.com:8080/sendsms.json";
+            $username = 'ayussuccess@gmail.com';
+            $apikey = 'c1891f9702ef124dc4469531489692ae2184b50c';
+            $flash = 0;
+            $sendername = 'EBNB';
 
-        $recipients = $hotelPhoneNumber;
-        $smsController->useHTTPGet($json_url, $username, $apikey, $flash, $sendername, $messageText, $recipients);
+            $confirmationLink = route('confirmation.email', ['token' => $confirmationToken]);
+            $messageText = "You have a booking from {$bookingData['checkin_date']} to {$bookingData['checkout_date']} guest {$bookingData['guest_name']} phone number {$bookingData['guest_phone']} for an amount of {$bookingData['payment_amount']}. Confirm or decline now: {$confirmationLink}. or call us at our main line +2347000555666.";
 
-        DB::commit();
+            $recipients = $hotelPhoneNumber;
+            $smsController->useHTTPGet($json_url, $username, $apikey, $flash, $sendername, $messageText, $recipients);
 
+            DB::commit();
+
+            return response()->json($booking);
+        }catch (\Exception $err) {
+            Log::error('An error occurred while creating booking: ' . $err->getMessage());
+            Log::error($err);
+
+            DB::rollBack();
+
+            return response()->json([
+                'status' => 500,
+                'message' => 'Could not send the sms or email.',
+                'error' => 'An unexpected error occurred. Please try again later.',
+            ], 500);
+        }
+
+
+        // The return statement should be outside the try-catch block
         return response()->json($booking);
-    } catch (\Exception $err) {
-        DB::rollBack();
-
-        return response()->json([
-            'status' => 500,
-            'message' => 'Could not complete the booking process.',
-        ]);
     }
-}
-
 
     public function cancelBooking($bookingId)
     {

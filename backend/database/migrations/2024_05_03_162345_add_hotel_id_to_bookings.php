@@ -9,20 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::table('hotels', function (Blueprint $table) {
-            $table->dropColumn('shortlet_service');
+        Schema::table('bookings', function (Blueprint $table) {
+            $table->unsignedBigInteger('hotel_id')->nullable();
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::table('hotels', function (Blueprint $table) {
-            $table->boolean('shortlet_service')->default(false);
+        Schema::table('bookings', function (Blueprint $table) {
+            //
         });
     }
 };

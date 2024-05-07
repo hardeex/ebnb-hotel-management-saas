@@ -122,7 +122,7 @@ function StepOneForm({ formData, handleFieldChange, nextStep }) {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="website" className="floating-label">
+        <label htmlFor="website" className="floating-label" placeholder="https://www.ebnbhotels.com">
           Website:
         </label>
         <input

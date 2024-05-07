@@ -54,6 +54,7 @@ export default function ModalComponent({
       });
 
       if (response.status === 200) {
+        console.log({res: response})
         setLoading(false);
         navigate(
           `/hotel-checkout?&roomId=${roomId}&roomPrice=${roomPrice}&bookingId=${response.data.id}`
